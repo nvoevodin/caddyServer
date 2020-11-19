@@ -1,2 +1,1 @@
-# caddyServer
-Test Caddy Server
+# caddy-server
