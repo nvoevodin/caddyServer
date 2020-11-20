@@ -87,4 +87,13 @@ If all goes well it will print your endpoints in the end
 ### You should now be able to visit your IP with no port (port 80) and see your app. Now let's add a domain
 
 
+Now, ctrl+C out of the script and do:
+
+
+```
+docker-compose up -d
+```
+
+It will launch the server in the background.
+
 Now visit https://yourprefix.yourdomain.com and you should see your Node app
