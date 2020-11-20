@@ -1,38 +1,47 @@
- data-frontiers.info www.data-frontiers.info {
-    gzip
-    realip cloudflare
-    tls voevodin.nv@gmail.com
-    tls {
-        dns cloudflare
-    }
-    header / {
-        # Enable HTTP Strict Transport Security (HSTS)
-        Strict-Transport-Security "max-age=31536000;"
-        # Enable cross-site filter (XSS) and tell browser to block detected attacks
-        X-XSS-Protection "1; mode=block"
-        # Disallow the site to be rendered within a frame (clickjacking protection)
-        X-Frame-Options "DENY"
-    }
-    redir https://nikitavoevodin.com
-}
+#remove <>, they are placeholders
+ <yourdomain.com> <www.yourdomain.com> {
+    gzip #dont touch
+    realip cloudflare #dont touch
+    tls <youremail@gmail.com>
+    tls { #dont touch
+        dns cloudflare #dont touch
+    } #dont touch
+    header / { #dont touch
+        # Enable HTTP Strict Transport Security (HSTS) #dont touch
+        Strict-Transport-Security "max-age=31536000;" #dont touch
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks #dont touch
+        X-XSS-Protection "1; mode=block" #dont touch
+        # Disallow the site to be rendered within a frame (clickjacking protection) #dont touch
+        X-Frame-Options "DENY" #dont touch
+    } #dont touch
+    redir <https://someredirectsite.com> # can be any site like a welcome page or something
+} #dont touch
 
-test.data-frontiers.info {
-    gzip
-    realip cloudflare
-    tls voevodin.nv@gmail.com
-    tls {
-        dns cloudflare
-    }
-    header / {
-        # Enable HTTP Strict Transport Security (HSTS)
-        Strict-Transport-Security "max-age=31536000;"
-        # Prevents embedding of instance within an iframe
-        X-Frame-Options: SAMEORIGIN
-        # Enable cross-site filter (XSS) and tell browser to block detected attacks
-        X-XSS-Protection "1; mode=block"
-    }
-    proxy / localhost:5000 {
-        websocket
-        transparent
-    }
-}
+#block start
+<uniqueprefix.yourdomain.com> { # example: testapi.yourdomain.com 
+    gzip #dont touch
+    realip cloudflare #dont touch
+    tls <youremail@gmail.com>
+    tls { #dont touch
+        dns cloudflare #dont touch
+    } #dont touch
+    header / { #dont touch
+        # Enable HTTP Strict Transport Security (HSTS) #dont touch
+        Strict-Transport-Security "max-age=31536000;" #dont touch
+        # Prevents embedding of instance within an iframe #dont touch
+        X-Frame-Options: SAMEORIGIN #dont touch
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks #dont touch
+        X-XSS-Protection "1; mode=block" #dont touch
+    } #dont touch
+    proxy / <dockercontainername:portnumber> {  # example: test_api:5000 
+        websocket #dont touch
+        transparent #dont touch
+    } #dont touch
+} #dont touch
+#block end
+
+#if you need to add another server with a new prefix:
+# 1.copy and paste lines from block start to block end
+# 2. change the uniqueprefix to another unique prefix
+# so if it was testapi.yourdomain.com, change it to testapi_new.yourdomain.com
+# 3. change <dockercontainername:portnumber> to your new server with another port
