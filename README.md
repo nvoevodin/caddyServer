@@ -54,9 +54,6 @@ the container will expose a hello world server running on port 5000
 Go to the localhost:5000 in your browser to see 'hello world'
 
 
-
-### You should now be able to access your app using your IP and port. Now we want to setup a firewall blocking that port and setup caddy as a reverse proxy so we can access it directly using port 80 (http)
-
 ## 6. Setup ufw firewall
 On your server computer:
 
@@ -70,32 +67,24 @@ sudo ufw allow https (Port 443)
 
 ## 7. Excecute caddy docker file
 
+Open terminal at the folder with caddyfile and run:
+
+```
+docker-compose up
+```
+You might have to use sudo if it complains about permissions
+
+```
+sudo docker-compose up
+```
+
+Caddy server will start and will begin requesting cerificates for your domains.
+
+If all goes well it will print your endpoints in the end
+
 
 
 ### You should now be able to visit your IP with no port (port 80) and see your app. Now let's add a domain
 
-## 9. Add domain in godaddy
-Buy a domain
 
-Point the A record to your public IP (just IP address and nothing else after it)
-
-You can find your public ip by typing 'my public ip' in google.
-
-It is different from your usual 192.168.xxx.xx.
-
-It may take a bit to propogate (usually 10-30 mins)
-
-If you were able to see your hello world by visiting your localhost before, you should be able to do the same with your public ip as well. Once godaddy links your domain to that public ip, you should be able to see your hello world by visitin your domain.
-
-10. Add SSL with LetsEncrypt
-```
-sudo add-apt-repository ppa:certbot/certbot
-sudo apt-get update
-sudo apt-get install python-certbot-nginx
-sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
-
-# Only valid for 90 days, test the renewal process with
-certbot renew --dry-run #using their test server (no renew is really happening)
-```
-
-Now visit https://yourdomain.com and you should see your Node app
+Now visit https://yourprefix.yourdomain.com and you should see your Node app
